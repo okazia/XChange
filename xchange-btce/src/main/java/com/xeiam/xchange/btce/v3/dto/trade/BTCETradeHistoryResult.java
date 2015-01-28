@@ -15,7 +15,10 @@ public class BTCETradeHistoryResult implements Comparable<BTCETradeHistoryResult
   private final BigDecimal amount;
   private final BigDecimal rate;
   private final Long orderId;
-  /** reflects who created original order. True means that you opened the order and then someone completely bought/sold it. False means you bought/sold from someone else's order. */
+  /**
+   * reflects who created original order. True means that you opened the order and then someone completely bought/sold it. False means you bought/sold
+   * from someone else's order.
+   */
   private final int isYourOrder;
   private final Long timestamp;
 
@@ -32,8 +35,9 @@ public class BTCETradeHistoryResult implements Comparable<BTCETradeHistoryResult
    * @param type
    * @param pair
    */
-  public BTCETradeHistoryResult(@JsonProperty("timestamp") Long timestamp, @JsonProperty("is_your_order") int isYourOrder, @JsonProperty("rate") BigDecimal rate,
-      @JsonProperty("amount") BigDecimal amount, @JsonProperty("order_id") Long orderId, @JsonProperty("type") Type type, @JsonProperty("pair") String pair) {
+  public BTCETradeHistoryResult(@JsonProperty("timestamp") Long timestamp, @JsonProperty("is_your_order") int isYourOrder,
+      @JsonProperty("rate") BigDecimal rate, @JsonProperty("amount") BigDecimal amount, @JsonProperty("order_id") Long orderId,
+      @JsonProperty("type") Type type, @JsonProperty("pair") String pair) {
 
     this.timestamp = timestamp;
     this.isYourOrder = isYourOrder;
