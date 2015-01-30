@@ -135,6 +135,20 @@ Get a list of valid symbol IDs.
 Response
 
 A list of symbol names. Currently just "btcusd".
+
+Symbols Details
+GET /symbols_details
+Get a list of valid symbol IDs and the pair details.
+
+Response
+An array of dictionaries:
+pair (string): the pair code
+price_precision (integer): Maximum number of significan digits for price in this pair
+initial_margin (decimal): Initial margin required to open a position in this pair
+minimum_margin (decimal): Minimal margin to maintain (in %)
+maximum_order_size (decimal): Maximum order size of the pair
+expiration (string): Expiration date for limited contracts/pairs
+
 Authenticated
 New order
 POST /order/new

@@ -1,35 +1,16 @@
 package com.xeiam.xchange.bitfinex.v1;
 
-import java.io.IOException;
-
-import javax.ws.rs.Consumes;
-import javax.ws.rs.HeaderParam;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
-
-import si.mazi.rescu.ParamsDigest;
-
 import com.xeiam.xchange.bitfinex.v1.dto.BitfinexException;
 import com.xeiam.xchange.bitfinex.v1.dto.account.BitfinexBalancesRequest;
 import com.xeiam.xchange.bitfinex.v1.dto.account.BitfinexBalancesResponse;
 import com.xeiam.xchange.bitfinex.v1.dto.account.BitfinexMarginInfosRequest;
 import com.xeiam.xchange.bitfinex.v1.dto.account.BitfinexMarginInfosResponse;
-import com.xeiam.xchange.bitfinex.v1.dto.trade.BitfinexActiveCreditsRequest;
-import com.xeiam.xchange.bitfinex.v1.dto.trade.BitfinexActivePositionsResponse;
-import com.xeiam.xchange.bitfinex.v1.dto.trade.BitfinexCancelOfferRequest;
-import com.xeiam.xchange.bitfinex.v1.dto.trade.BitfinexCancelOrderRequest;
-import com.xeiam.xchange.bitfinex.v1.dto.trade.BitfinexCreditResponse;
-import com.xeiam.xchange.bitfinex.v1.dto.trade.BitfinexNewOfferRequest;
-import com.xeiam.xchange.bitfinex.v1.dto.trade.BitfinexNewOrderRequest;
-import com.xeiam.xchange.bitfinex.v1.dto.trade.BitfinexNonceOnlyRequest;
-import com.xeiam.xchange.bitfinex.v1.dto.trade.BitfinexOfferStatusRequest;
-import com.xeiam.xchange.bitfinex.v1.dto.trade.BitfinexOfferStatusResponse;
-import com.xeiam.xchange.bitfinex.v1.dto.trade.BitfinexOrderStatusRequest;
-import com.xeiam.xchange.bitfinex.v1.dto.trade.BitfinexOrderStatusResponse;
-import com.xeiam.xchange.bitfinex.v1.dto.trade.BitfinexPastTradesRequest;
-import com.xeiam.xchange.bitfinex.v1.dto.trade.BitfinexTradeResponse;
+import com.xeiam.xchange.bitfinex.v1.dto.trade.*;
+import si.mazi.rescu.ParamsDigest;
+
+import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
+import java.io.IOException;
 
 @Path("v1")
 @Produces(MediaType.APPLICATION_JSON)
@@ -55,6 +36,11 @@ public interface BitfinexAuthenticated extends Bitfinex {
   @Path("order/cancel")
   BitfinexOrderStatusResponse cancelOrders(@HeaderParam("X-BFX-APIKEY") String apiKey, @HeaderParam("X-BFX-PAYLOAD") ParamsDigest payload, @HeaderParam("X-BFX-SIGNATURE") ParamsDigest signature,
       BitfinexCancelOrderRequest cancelOrderRequest) throws IOException, BitfinexException;
+
+  @POST
+  @Path("order/cancel/all")
+  BitfinexOrderStatusResponse cancelAllOrders(@HeaderParam("X-BFX-APIKEY") String apiKey, @HeaderParam("X-BFX-PAYLOAD") ParamsDigest payload, @HeaderParam("X-BFX-SIGNATURE") ParamsDigest signature,
+                                              BitfinexNonceOnlyRequest nonceOnlyRequest) throws IOException, BitfinexException;
 
   @POST
   @Path("offer/cancel")

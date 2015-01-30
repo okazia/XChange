@@ -1,21 +1,12 @@
 package com.xeiam.xchange.bitfinex.v1;
 
+import com.xeiam.xchange.bitfinex.v1.dto.BitfinexException;
+import com.xeiam.xchange.bitfinex.v1.dto.marketdata.*;
+
+import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
 import java.io.IOException;
 import java.util.Set;
-
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
-import javax.ws.rs.core.MediaType;
-
-import com.xeiam.xchange.bitfinex.v1.dto.BitfinexException;
-import com.xeiam.xchange.bitfinex.v1.dto.marketdata.BitfinexDepth;
-import com.xeiam.xchange.bitfinex.v1.dto.marketdata.BitfinexLend;
-import com.xeiam.xchange.bitfinex.v1.dto.marketdata.BitfinexLendDepth;
-import com.xeiam.xchange.bitfinex.v1.dto.marketdata.BitfinexTicker;
-import com.xeiam.xchange.bitfinex.v1.dto.marketdata.BitfinexTrade;
 
 @Path("v1")
 @Produces(MediaType.APPLICATION_JSON)
@@ -49,4 +40,7 @@ public interface Bitfinex {
   @Path("symbols")
   Set<String> getSymbols() throws IOException, BitfinexException;
 
+  @GET
+  @Path("symbols_details")
+  BitfinexSymbolInfo[] getSymbolDetails() throws IOException, BitfinexException;
 }
