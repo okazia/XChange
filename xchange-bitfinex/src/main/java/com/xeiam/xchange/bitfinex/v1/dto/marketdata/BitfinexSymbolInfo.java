@@ -3,6 +3,7 @@ package com.xeiam.xchange.bitfinex.v1.dto.marketdata;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public class BitfinexSymbolInfo {
     private final String pair;
@@ -12,6 +13,8 @@ public class BitfinexSymbolInfo {
     private final BigDecimal maximumOrderSize;
     private final BigDecimal minimumOrderSize;
     private final String expiration;
+
+    private final BigDecimal minPrice;
 
     /**
      * @param pair
@@ -32,6 +35,8 @@ public class BitfinexSymbolInfo {
         this.maximumOrderSize = maximumOrderSize;
         this.minimumOrderSize = minimumOrderSize;
         this.expiration = expiration;
+
+        this.minPrice = new BigDecimal(1 / Math.pow(10, pricePrecision)).setScale(pricePrecision, RoundingMode.DOWN);
     }
 
     public String getPair() {
@@ -60,6 +65,10 @@ public class BitfinexSymbolInfo {
 
     public String getExpiration() {
         return expiration;
+    }
+
+    public BigDecimal getMinPrice() {
+        return minPrice;
     }
 
     @Override

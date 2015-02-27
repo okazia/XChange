@@ -1,25 +1,14 @@
 package com.xeiam.xchange.btce.v3;
 
-import java.io.IOException;
-import java.math.BigDecimal;
-
-import javax.ws.rs.Consumes;
-import javax.ws.rs.FormParam;
-import javax.ws.rs.HeaderParam;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
-
+import com.xeiam.xchange.btce.v3.dto.account.BTCEAccountInfoReturn;
+import com.xeiam.xchange.btce.v3.dto.trade.*;
 import si.mazi.rescu.ParamsDigest;
 import si.mazi.rescu.SynchronizedValueFactory;
 
-import com.xeiam.xchange.btce.v3.dto.account.BTCEAccountInfoReturn;
-import com.xeiam.xchange.btce.v3.dto.trade.BTCECancelOrderReturn;
-import com.xeiam.xchange.btce.v3.dto.trade.BTCEOpenOrdersReturn;
-import com.xeiam.xchange.btce.v3.dto.trade.BTCEOrder;
-import com.xeiam.xchange.btce.v3.dto.trade.BTCEPlaceOrderReturn;
-import com.xeiam.xchange.btce.v3.dto.trade.BTCETradeHistoryReturn;
+import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
+import java.io.IOException;
+import java.math.BigDecimal;
 
 /**
  * @author Matija Mazi
@@ -104,7 +93,17 @@ public interface BTCEAuthenticated extends BTCE {
       @FormParam("from") Long from, @FormParam("count") Long count, @FormParam("from_id") Long fromId, @FormParam("end_id") Long endId, @FormParam("order") SortOrder order,
       @FormParam("since") Long since, @FormParam("end") Long end, @FormParam("pair") String pair) throws IOException;
 
+    @POST
+    @Path("tapi")
+    @FormParam("method")
+  BTCETransHistoryReturn TransHistory(@HeaderParam("Key") String apiKey, @HeaderParam("Sign") ParamsDigest signer, @FormParam("nonce") SynchronizedValueFactory<Long> nonce,
+      @FormParam("from") Long from, @FormParam("count") Long count, @FormParam("from_id") Long fromId, @FormParam("end_id") Long endId, @FormParam("order") SortOrder order,
+      @FormParam("since") Long since, @FormParam("end") Long end) throws IOException;
+
   enum SortOrder {
     ASC, DESC
   }
+
+
+
 }

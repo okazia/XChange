@@ -8,9 +8,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class BTCEReturn<V> {
 
-  private final boolean success;
-  private final V returnValue;
-  private final String error;
+  protected  boolean success;
+  protected  V returnValue;
+  protected  String error;
 
   /**
    * Constructor
