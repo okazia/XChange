@@ -1,8 +1,5 @@
 package com.xeiam.xchange.examples.bitstamp.trade;
 
-import java.io.IOException;
-import java.math.BigDecimal;
-
 import com.xeiam.xchange.Exchange;
 import com.xeiam.xchange.bitstamp.dto.trade.BitstampOrder;
 import com.xeiam.xchange.bitstamp.service.polling.BitstampTradeServiceRaw;
@@ -12,6 +9,9 @@ import com.xeiam.xchange.dto.trade.LimitOrder;
 import com.xeiam.xchange.dto.trade.OpenOrders;
 import com.xeiam.xchange.examples.bitstamp.BitstampDemoUtils;
 import com.xeiam.xchange.service.polling.trade.PollingTradeService;
+
+import java.io.IOException;
+import java.math.BigDecimal;
 
 /**
  * <p>
@@ -29,7 +29,7 @@ public class BitstampTradeDemo {
     Exchange bitstamp = BitstampDemoUtils.createExchange();
     PollingTradeService tradeService = bitstamp.getPollingTradeService();
 
-    generic(tradeService);
+    //generic(tradeService);
     raw((BitstampTradeServiceRaw) tradeService);
   }
 
@@ -61,7 +61,7 @@ public class BitstampTradeDemo {
 
     printRawOpenOrders(tradeService);
 
-    // place a limit buy order
+    /*// place a limit buy order
     BitstampOrder order = tradeService.sellBitstampOrder(new BigDecimal(".001"), new BigDecimal("1000.00"));
     System.out.println("BitstampOrder return value: " + order);
 
@@ -71,7 +71,7 @@ public class BitstampTradeDemo {
     boolean cancelResult = tradeService.cancelBitstampOrder(order.getId());
     System.out.println("Canceling returned " + cancelResult);
 
-    printRawOpenOrders(tradeService);
+    printRawOpenOrders(tradeService);*/
   }
 
   private static void printRawOpenOrders(BitstampTradeServiceRaw tradeService) throws IOException {

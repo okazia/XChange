@@ -1,8 +1,5 @@
 package com.xeiam.xchange.examples.bitfinex.marketdata;
 
-import java.io.IOException;
-import java.util.Arrays;
-
 import com.xeiam.xchange.Exchange;
 import com.xeiam.xchange.ExchangeFactory;
 import com.xeiam.xchange.bitfinex.v1.BitfinexExchange;
@@ -11,6 +8,9 @@ import com.xeiam.xchange.bitfinex.v1.service.polling.BitfinexMarketDataServiceRa
 import com.xeiam.xchange.currency.CurrencyPair;
 import com.xeiam.xchange.dto.marketdata.Trades;
 import com.xeiam.xchange.service.polling.marketdata.PollingMarketDataService;
+
+import java.io.IOException;
+import java.util.Arrays;
 
 /**
  * Demonstrate requesting Order Book at BTC-E
@@ -25,7 +25,7 @@ public class TradesDemo {
     // Interested in the public polling market data feed (no authentication)
     PollingMarketDataService marketDataService = bitfinex.getPollingMarketDataService();
 
-    generic(marketDataService);
+    //generic(marketDataService);
     raw((BitfinexMarketDataServiceRaw) marketDataService);
 
   }

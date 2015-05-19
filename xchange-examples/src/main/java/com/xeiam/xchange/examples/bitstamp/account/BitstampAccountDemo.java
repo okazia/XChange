@@ -1,20 +1,13 @@
 package com.xeiam.xchange.examples.bitstamp.account;
 
-import java.io.IOException;
-import java.math.BigDecimal;
-import java.util.List;
-
 import com.xeiam.xchange.Exchange;
 import com.xeiam.xchange.bitstamp.dto.account.BitstampBalance;
-import com.xeiam.xchange.bitstamp.dto.account.BitstampDepositAddress;
-import com.xeiam.xchange.bitstamp.dto.account.BitstampWithdrawal;
-import com.xeiam.xchange.bitstamp.dto.account.DepositTransaction;
-import com.xeiam.xchange.bitstamp.dto.account.WithdrawalRequest;
 import com.xeiam.xchange.bitstamp.service.polling.BitstampAccountServiceRaw;
-import com.xeiam.xchange.currency.Currencies;
 import com.xeiam.xchange.dto.account.AccountInfo;
 import com.xeiam.xchange.examples.bitstamp.BitstampDemoUtils;
 import com.xeiam.xchange.service.polling.account.PollingAccountService;
+
+import java.io.IOException;
 
 /**
  * <p>
@@ -36,7 +29,7 @@ public class BitstampAccountDemo {
     Exchange bitstamp = BitstampDemoUtils.createExchange();
     PollingAccountService accountService = bitstamp.getPollingAccountService();
 
-    generic(accountService);
+    //generic(accountService);
     raw((BitstampAccountServiceRaw) accountService);
   }
 
@@ -46,11 +39,11 @@ public class BitstampAccountDemo {
     AccountInfo accountInfo = accountService.getAccountInfo();
     System.out.println("AccountInfo as String: " + accountInfo.toString());
 
-    String depositAddress = accountService.requestDepositAddress(Currencies.BTC);
+    /*String depositAddress = accountService.requestDepositAddress(Currencies.BTC);
     System.out.println("Deposit address: " + depositAddress);
 
     String withdrawResult = accountService.withdrawFunds("BTC", new BigDecimal(1).movePointLeft(4), "1PxYUsgKdw75sdLmM7HYP2p74LEq3mxM6L");
-    System.out.println("withdrawResult = " + withdrawResult);
+    System.out.println("withdrawResult = " + withdrawResult);*/
   }
 
   private static void raw(BitstampAccountServiceRaw accountService) throws IOException {
@@ -59,23 +52,23 @@ public class BitstampAccountDemo {
     BitstampBalance bitstampBalance = accountService.getBitstampBalance();
     System.out.println("BitstampBalance: " + bitstampBalance);
 
-    BitstampDepositAddress depositAddress = accountService.getBitstampBitcoinDepositAddress();
-    System.out.println("BitstampDepositAddress address: " + depositAddress);
-
-    final List<DepositTransaction> unconfirmedDeposits = accountService.getUnconfirmedDeposits();
-    System.out.println("Unconfirmed deposits:");
-    for (DepositTransaction unconfirmedDeposit : unconfirmedDeposits) {
-      System.out.println(unconfirmedDeposit);
-    }
-
-    final List<WithdrawalRequest> withdrawalRequests = accountService.getWithdrawalRequests();
-    System.out.println("Withdrawal requests:");
-    for (WithdrawalRequest unconfirmedDeposit : withdrawalRequests) {
-      System.out.println(unconfirmedDeposit);
-    }
-
-    BitstampWithdrawal withdrawResult = accountService
-        .withdrawBitstampFunds(new BigDecimal(1).movePointLeft(4), "1PxYUsgKdw75sdLmM7HYP2p74LEq3mxM6L");
-    System.out.println("BitstampBooleanResponse = " + withdrawResult);
+//    BitstampDepositAddress depositAddress = accountService.getBitstampBitcoinDepositAddress();
+//    System.out.println("BitstampDepositAddress address: " + depositAddress);
+//
+//    final List<DepositTransaction> unconfirmedDeposits = accountService.getUnconfirmedDeposits();
+//    System.out.println("Unconfirmed deposits:");
+//    for (DepositTransaction unconfirmedDeposit : unconfirmedDeposits) {
+//      System.out.println(unconfirmedDeposit);
+//    }
+//
+//    final List<WithdrawalRequest> withdrawalRequests = accountService.getWithdrawalRequests();
+//    System.out.println("Withdrawal requests:");
+//    for (WithdrawalRequest unconfirmedDeposit : withdrawalRequests) {
+//      System.out.println(unconfirmedDeposit);
+//    }
+//
+//    BitstampWithdrawal withdrawResult = accountService
+//        .withdrawBitstampFunds(new BigDecimal(1).movePointLeft(4), "1PxYUsgKdw75sdLmM7HYP2p74LEq3mxM6L");
+//    System.out.println("BitstampBooleanResponse = " + withdrawResult);
   }
 }

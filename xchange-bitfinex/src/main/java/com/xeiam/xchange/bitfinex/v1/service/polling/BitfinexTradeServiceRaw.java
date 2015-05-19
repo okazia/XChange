@@ -217,4 +217,15 @@ public class BitfinexTradeServiceRaw extends BitfinexBasePollingService {
     }
   }
 
+    public String accountInfos() throws IOException {
+
+        try {
+            String response = bitfinex.accountInfos(apiKey, payloadCreator, signatureCreator,
+                    new BitfinexNonceOnlyRequest("/v1/account_infos", String.valueOf(exchange.getNonceFactory().createValue())));
+            return response;
+        } catch (BitfinexException e) {
+            throw new ExchangeException(e.getMessage());
+        }
+    }
+
 }
