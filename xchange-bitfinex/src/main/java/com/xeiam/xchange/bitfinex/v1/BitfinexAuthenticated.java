@@ -1,10 +1,7 @@
 package com.xeiam.xchange.bitfinex.v1;
 
 import com.xeiam.xchange.bitfinex.v1.dto.BitfinexException;
-import com.xeiam.xchange.bitfinex.v1.dto.account.BitfinexBalancesRequest;
-import com.xeiam.xchange.bitfinex.v1.dto.account.BitfinexBalancesResponse;
-import com.xeiam.xchange.bitfinex.v1.dto.account.BitfinexMarginInfosRequest;
-import com.xeiam.xchange.bitfinex.v1.dto.account.BitfinexMarginInfosResponse;
+import com.xeiam.xchange.bitfinex.v1.dto.account.*;
 import com.xeiam.xchange.bitfinex.v1.dto.trade.*;
 import si.mazi.rescu.ParamsDigest;
 
@@ -97,4 +94,9 @@ public interface BitfinexAuthenticated extends Bitfinex {
     String accountInfos(@HeaderParam("X-BFX-APIKEY") String apiKey, @HeaderParam("X-BFX-PAYLOAD") ParamsDigest payload,
                         @HeaderParam("X-BFX-SIGNATURE") ParamsDigest signature, BitfinexNonceOnlyRequest nonceOnlyRequest) throws IOException, BitfinexException;
 
+
+    @POST
+    @Path("history/movements")
+    BitfinexPastTransactionsResponse[] pastTransactions(@HeaderParam("X-BFX-APIKEY") String apiKey, @HeaderParam("X-BFX-PAYLOAD") ParamsDigest payload,
+                                       @HeaderParam("X-BFX-SIGNATURE") ParamsDigest signature, BitfinexPastTransactionsRequest pastTransactionsRequest) throws IOException, BitfinexException;
 }
