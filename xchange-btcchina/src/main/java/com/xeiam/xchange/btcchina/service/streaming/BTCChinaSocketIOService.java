@@ -9,6 +9,7 @@ import static com.xeiam.xchange.btcchina.service.streaming.BTCChinaSocketIOClien
 import java.net.URI;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.TimeUnit;
 
 import org.java_websocket.WebSocket.READYSTATE;
 import org.json.JSONObject;
@@ -75,6 +76,15 @@ public class BTCChinaSocketIOService extends BaseExchangeService implements Stre
   public ExchangeEvent getNextEvent() throws InterruptedException {
 
     return consumerEventQueue.take();
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public ExchangeEvent getNextEvent(long timeout, TimeUnit unit) throws InterruptedException {
+
+    return consumerEventQueue.poll(timeout, unit);
   }
 
   /**

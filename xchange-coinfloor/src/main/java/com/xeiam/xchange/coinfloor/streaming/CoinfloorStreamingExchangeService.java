@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.TimeUnit;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -285,6 +286,12 @@ public class CoinfloorStreamingExchangeService extends BaseWebSocketExchangeServ
   public CoinfloorExchangeEvent getNextEvent() throws InterruptedException {
 
     return (CoinfloorExchangeEvent) super.getNextEvent();
+  }
+
+  @Override
+  public ExchangeEvent getNextEvent(long timeout, TimeUnit unit) throws InterruptedException {
+
+    return (CoinfloorExchangeEvent) super.getNextEvent(timeout, unit);
   }
 
   public CoinfloorExchangeEvent getNextSystemEvent() throws InterruptedException {

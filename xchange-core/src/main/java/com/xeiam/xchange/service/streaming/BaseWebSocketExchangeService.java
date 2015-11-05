@@ -95,6 +95,13 @@ public abstract class BaseWebSocketExchangeService extends BaseExchangeService i
     return event;
   }
 
+  @Override
+  public ExchangeEvent getNextEvent(long timeout, TimeUnit unit) throws InterruptedException {
+
+    ExchangeEvent event = consumerEventQueue.poll(timeout, unit);
+    return event;
+  }
+
   public synchronized ExchangeEvent checkNextEvent() throws InterruptedException {
 
     if (consumerEventQueue.isEmpty()) {

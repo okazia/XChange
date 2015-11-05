@@ -4,6 +4,7 @@ import io.socket.SocketIOException;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.TimeUnit;
 
 import org.java_websocket.WebSocket.READYSTATE;
 
@@ -88,6 +89,15 @@ public class CoinsetterSocketIOService extends CoinsetterSocketIOServiceRaw impl
   public ExchangeEvent getNextEvent() throws InterruptedException {
 
     return consumerEventQueue.take();
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public ExchangeEvent getNextEvent(long timeout, TimeUnit unit) throws InterruptedException {
+
+    return consumerEventQueue.poll(timeout, unit);
   }
 
   /**

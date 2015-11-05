@@ -2,6 +2,8 @@ package com.xeiam.xchange.service.streaming;
 
 import org.java_websocket.WebSocket.READYSTATE;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * <p>
  * Interface to provide the following to {@link com.xeiam.xchange.Exchange}:
@@ -30,10 +32,19 @@ public interface StreamingExchangeService {
    * <p>
    * Returns next event in consumer event queue, then removes it.
    * </p>
-   * 
+   *
    * @return An ExchangeEvent
    */
   ExchangeEvent getNextEvent() throws InterruptedException;
+
+  /**
+   * <p>
+   * Returns next event in consumer event queue, then removes it.
+   * </p>
+   *
+   * @return An ExchangeEvent
+   */
+  ExchangeEvent getNextEvent(long timeout, TimeUnit unit) throws InterruptedException;
 
   /**
    * <p>

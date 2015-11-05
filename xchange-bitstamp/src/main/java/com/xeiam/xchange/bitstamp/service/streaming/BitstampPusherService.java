@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.TimeUnit;
 
 import org.java_websocket.WebSocket.READYSTATE;
 import org.slf4j.Logger;
@@ -114,6 +115,19 @@ public class BitstampPusherService extends BitstampBasePollingService implements
   public ExchangeEvent getNextEvent() throws InterruptedException {
 
     return consumerEventQueue.take();
+  }
+
+  /**
+   * <p>
+   * Returns next event in consumer event queue, then removes it.
+   * </p>
+   *
+   * @return An ExchangeEvent
+   */
+  @Override
+  public ExchangeEvent getNextEvent(long timeout, TimeUnit unit) throws InterruptedException {
+
+    return consumerEventQueue.poll(timeout, unit);
   }
 
   /**
